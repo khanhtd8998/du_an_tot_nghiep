@@ -52,7 +52,7 @@ const sendErrorProd = (err, req, res) => {
   }
 };
 
-module.exports = (err, req, res, next) => {
+const errorHandler = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
   if (process.env.NODE_ENV === 'development') {
@@ -67,3 +67,5 @@ module.exports = (err, req, res, next) => {
     sendErrorProd(error, req, res);
   }
 };
+
+export default errorHandler;
